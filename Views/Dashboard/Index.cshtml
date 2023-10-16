@@ -1,0 +1,141 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["isDashboard"] = true;
+}
+
+<div class="row mb-4">
+    <div class="col-md-4">
+    <div class="d-flex flex-row widget summary Positive">
+        
+            <div class="d-flex flex-column justify-content-center p-5">
+
+          <i  class="fa-solid  fa-2xl"></i>
+
+        </div>
+
+        <div class="d-flex flex-column m-auto ру-3">
+            
+            <span class="lead">Total Positive Mood</span>
+            <h1 class="display 6 fw-bold">@ViewBag.TotalPositive</h1>
+
+        </div>
+        </div>
+        
+
+    </div>
+    <div class="col-md-4">
+    <div class="d-flex flex-row widget summary Negative">
+       
+
+        <div class="d-flex flex-column justify-content-center p-5">
+
+                <i class="fa-solid fa-percent fa-2xl"></i>
+
+        </div>
+
+        <div class="d-flex flex-column m-auto ру-3">
+
+            <span class="lead">Total Negative Mood</span>
+            <h1 class="display 6 fw-bold">@ViewBag.TotalNegative</h1>
+
+        </div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+    <div class="d-flex flex-row widget summary Balance">
+
+        <div class="d-flex flex-column justify-content-center p-5">
+
+            <i class="fa-solid  fa-2xl"></i>
+
+        </div>
+
+        <div class="d-flex flex-column m-auto ру-3">
+
+            <span class="lead">Total Result</span>
+            <h1 class="display 6 fw-bold">@ViewBag.Balance</h1>
+
+        </div>
+        </div>
+
+    </div>
+ </div>
+
+
+<div class="row mb-4">
+   
+    <div class="col-md-6">
+        <div class="widget chart">
+            <div class="p-4">
+                <h5 class="fw-bold">Mood By Category</h5>
+            </div>
+            <ejs-accumulationchart id="doughnutchart" enableSmartLabels background="#1a222b">
+                <e-accumulation-series-collection>
+                    <e-accumulation-series dataSource="@ViewBag.DoughnutChartData" xName="categoryTitleWithIcon" yName="percentage" innerRadius="60%" legendShape="Circle">
+                        <e-accumulationseries-datalabel name="formattedPercentage" visible></e-accumulationseries-datalabel>
+                    </e-accumulation-series>
+                </e-accumulation-series-collection>
+                <e-accumulationchart-legendsettings position="Top" toggleVisibility="false">
+                    <e-legendsettings-textstyle color="fff" size="1rem" ></e-legendsettings-textstyle>
+                </e-accumulationchart-legendsettings>
+                <e-accumulationchart-tooltipsettings enable></e-accumulationchart-tooltipsettings>
+            </ejs-accumulationchart>
+        </div>
+    </div>
+ 
+   
+    <div calss="col-md-8">
+        <div class="widget chart">
+            <div class="p-4">
+                <h5 class="fw-bold">Negative vs positive</h5>
+            </div>
+            <ejs-chart id="spline-chart" background="#1a222b"
+                       palettes=@(new string[]{"#54ffa9","ffe91a"})>
+                <e-chart-primaryxaxis valueType="Category">
+                    <e-majorgridlines width="0"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                </e-chart-primaryxaxis>
+                <e-chart-primaryyaxis>
+                    <e-majorgridlines width="1" color="#32414d" dataArray="3,5"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                    <e-linestyle width="0"></e-linestyle>
+                </e-chart-primaryyaxis>
+                <e-chart-chartarea>
+                    <e-chartarea-border width="0"></e-chartarea-border>
+                </e-chart-chartarea>
+                <e-series-collection>
+
+                    <e-series dataSource="@ViewBag.SplineChartData" xName="day" width="3" yName="positive" name="Positive" typeof="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
+                    <e-series dataSource="@ViewBag.SplineChartData" xName="day" width="3" yName="negative" name="negative" typeof="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
+                </e-series-collection>
+                <e-chart-legendsettings position="Top" alignment="Far" toggleVisibility="false">
+                    <e-legendsettings-textstyle color="fff" size="1rem"></e-legendsettings-textstyle>
+                </e-chart-legendsettings>
+                <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
+            </ejs-chart>
+        </div>
+
+    </div>
+    
+</div>
+@*recent trnsaction *@
+<div class="row">
+    <div class="col-md-6">
+        <div class="widget">
+            <h5 class="fw-bold">Recent Transaction</h5>
+        </div>
+        <div class="px-4 pb-4">
+            <ejs-grid id="recent-transactions" dataSource="@ViewBag.RecentTransactions">
+                <e-grid-columns>
+                    <e-grid-column headerText="Category" field="CategoryTitleWithIcon"></e-grid-column>
+                    <e-grid-column headerText="Date" field="Date" width="110px" type="date" format="MMM-dd-yy" textAlign="Left"></e-grid-column>
+                    <e-grid-column headerText="Percentage" field="Percentage" width="110px" textAlign="Right"></e-grid-column>
+
+                </e-grid-columns>
+            </ejs-grid>
+        </div>
+    </div>
+</div>

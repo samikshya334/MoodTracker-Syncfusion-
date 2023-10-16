@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*
+@*<ejs-slidebar id="sidebar" width="290px">
+
+</ejs-slidebar>*@
+@{
+    List<Object> menuItems = new List<Object>();
+    {
+        menuItems.Add(new
+        {
+            text = "Dashboard",
+            url = "/",
+            iconCss = "fa-solid fa-box",
+
+        });
+        menuItems.Add(new
+        {
+            text="General",
+            seperator=true,
+
+        });
+        menuItems.Add(new
+        {
+            text = "Dashboard",
+            url = "/",
+            iconCss = "fa-solid fa-box",
+
+        });
+        menuItems.Add(new
+        {
+            text = "Categories",
+            url = "/Category",
+            iconCss = "fa-solid fa-folder-closed",
+
+        });
+        menuItems.Add(new
+        {
+            text = "Transactions",
+            iconCss = "fa-solid fa-arrow-right-arrow-left",
+            url = "/Transaction"
+        });
+       
+    }
+}
+
+<ejs-sidebar id="sidebar" width="290px">
+    <e-content-template>
+        <ejs-menu id="menu"
+        items="menuItems"
+        orientation="Vertical"
+        hamburgerMode></ejs-menu>
+    </e-content-template>
+	
+</ejs-sidebar>

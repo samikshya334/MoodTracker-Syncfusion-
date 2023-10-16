@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mood_Traker</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+  @*  <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/23.1.36/material.css" />*@
+    <link href="	https://cdn.syncfusion.com/ej2/23.1.36/bootstrap5-dark.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Poor+Story&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Mental_Health_Traker.styles.css" asp-append-version="true" />
+    <script src="https://cdn.syncfusion.com/ej2/23.1.36/dist/ej2.min.js"></script>
+  
+</head>
+<body class="e-bigger">
+    <partial name="_SideBar"/>
+    <header>
+        <nav class="navbar stucky-top">
+            <div class="container-fluid py-2 px-4">
+                <i class="fa-soild fa-magnifying-glass"></i>
+            </div>
+            <div >
+                <i class="fa-soild fa-bell"></i>
+                <i class="fa-soild fa-message"></i>
+            </div>
+            
+        </nav>
+    </header>
+    <div class="main-content">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+                <div class="@(ViewData["isDashboard"]==null? "col-md-10":"col-md-10")">
+                <main role="main" class="pb-3">
+                        @if (ViewData["isDashboard"] == null)
+                        {
+                            <div class="col-md-7">
+                                <div class="d-flex flex-column mb-5">
+                                    <div class="d-flex mb-1">
+                                        <div class="flex-grow-1">
+                                            <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
+                                        </div>
+                                        <div>
+                                            @if (ViewData["PageActionText"] !=null)
+                                            {
+                                                <a class="btn btn-success" href="@ViewData["PageActionUrl"]">
+                                                    @ViewData["PageActionText"]
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                    <ejs-breadcrumb id="breadcrumb" separatorTemplate="@Html.Raw("<span class='fa-solid fa-angle-right'></span>")"></ejs-breadcrumb>
+                                </div>
+                            </div>
+                        }
+
+                    @RenderBody()
+                </main>
+           </div>
+        </div>
+       
+    </div>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Mental_Health_Traker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <ejs-scripts></ejs-scripts>
+</body>
+</html>
